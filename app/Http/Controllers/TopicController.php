@@ -27,6 +27,10 @@ class TopicController extends Controller
     public function create(Request $request, $section)
     {
         if (Auth::check()){
+            $this->validate($request, [
+                'name' => 'required',
+            ]);
+
             $id = Section::where('name', $section)->select('id')->first();
 
             $topic = new Topiс();

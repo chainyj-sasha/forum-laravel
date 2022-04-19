@@ -51,6 +51,10 @@ class PostController extends Controller
 
             if ($request->has('button')){
                 if ($post->user_id == auth()->user()->id){
+                    $this->validate($request, [
+                        'text' => 'required',
+                    ]);
+
                     $post->text = $request->text;
                     $post->save();
 
